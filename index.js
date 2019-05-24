@@ -8,7 +8,7 @@ pantryBot.on('ready', () => {
 });
 
 pantryBot.on('message', message => {
-  if (message.content === 'suzz') {
+  if (message.content === 'Suz') {
     message.reply('Did you mean Queen of the Alts?');
   }
 });
