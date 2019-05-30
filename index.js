@@ -21,10 +21,12 @@ pantryBot.on('message', message => {
       commands.eggs.cellar(cmdToken, argTokens, message);
       commands.help.help(cmdToken, argTokens, message);
       commands.events.whenIs(cmdToken, argTokens, message);
-      commands.roles.setCategory(cmdToken, argTokens, message);
-      commands.roles.unsetCategory(cmdToken, argTokens, message);
+      commands.roles.setRole(cmdToken, argTokens, message);
+      commands.roles.unsetRole(cmdToken, argTokens, message);
       commands.roles.setClass(cmdToken, argTokens, message);
       commands.roles.unsetClass(cmdToken, argTokens, message);
+      commands.roles.setTimezone(cmdToken, argTokens, message);
+      commands.roles.unsetTimezone(cmdToken, argTokens, message);
     }
   }
 });
