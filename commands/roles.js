@@ -90,7 +90,7 @@ const setClass = (cmd, argTokens, message) => {
     } else {
       let guildMember = message.mentions.members.first();
       message.reply(
-        `I'm sorry ${guildMember} I\'m afraid I can\'t do that, we don\'t get to choose the cards we\'re dealt with`
+        `I'm sorry ${guildMember} I\'m afraid I can\'t do that, your role will come in due time ❤️`
       );
     }
   }
