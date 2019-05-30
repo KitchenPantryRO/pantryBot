@@ -12,15 +12,20 @@ pantryBot.on('ready', () => {
 pantryBot.on('message', message => {
   const tokens = tokenizer.tokens(message.content);
   const numTokens = tokenizer.getTokensLen(tokens);
-  const firstToken = tokenizer.getToken(0, tokens);
-  const isCmd = tokenizer.isCmd(firstToken);
-  const argTokens = numTokens >= 2 ? tokenizer.getArgTokens(tokens) : [];
-
-  if (isCmd) {
-    const cmdToken = tokenizer.getCmd(firstToken);
-    commands.eggs.cellar(cmdToken, argTokens, message);
-    commands.help.help(cmdToken, argTokens, message);
-    commands.events.whenIs(cmdToken, argTokens, message);
+  if (numTokens > 0) {
+    const firstToken = tokenizer.getToken(0, tokens);
+    const isCmd = tokenizer.isCmd(firstToken);
+    if (isCmd) {
+      const cmdToken = tokenizer.getCmd(firstToken);
+      const argTokens = numTokens >= 2 ? tokenizer.getArgTokens(tokens) : [];
+      commands.eggs.cellar(cmdToken, argTokens, message);
+      commands.help.help(cmdToken, argTokens, message);
+      commands.events.whenIs(cmdToken, argTokens, message);
+      commands.roles.setCategory(cmdToken, argTokens, message);
+      commands.roles.unsetCategory(cmdToken, argTokens, message);
+      commands.roles.setClass(cmdToken, argTokens, message);
+      commands.roles.unsetClass(cmdToken, argTokens, message);
+    }
   }
 });
 pantryBot.login(process.env.BOT_TOKEN);

@@ -12,8 +12,7 @@ exports.getToken = (position, tokens) => {
 // Determines of the incoming message is a command
 exports.isCmd = tokens => {
   const cmdToken = this.getToken(0, tokens);
-  const cmdChar = cmdToken.charAt(0);
-  return cmdChar === '$';
+  return cmdToken.startsWith('$');
 };
 
 // Returns command without $ delimiter
