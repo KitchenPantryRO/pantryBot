@@ -2,7 +2,7 @@ const setRole = (cmd, argTokens, message) => {
   const cmdToken = cmd.toLowerCase();
   const roleCommand = argTokens.length >= 3 ? argTokens[1].toLowerCase() : '';
   if (cmdToken === 'set' && argTokens.length >= 3 && roleCommand === 'role') {
-    const roleCommandArgs = argTokens[2];
+    const roleCommandArgs = argTokens[2].toLowerCase();
     if (roleCommandArgs === 'shield') {
       let shieldRole = message.guild.roles.find(r => r.name === 'Shield');
       let guildMember = message.mentions.members.first();
@@ -29,7 +29,7 @@ const unsetRole = (cmd, argTokens, message) => {
   const cmdToken = cmd.toLowerCase();
   const roleCommand = argTokens.length >= 3 ? argTokens[1].toLowerCase() : '';
   if (cmdToken === 'unset' && argTokens.length >= 3 && roleCommand === 'role') {
-    const roleCommandArgs = argTokens[2];
+    const roleCommandArgs = argTokens[2].toLowerCase();
     if (roleCommandArgs === 'shield') {
       let shieldRole = message.guild.roles.find(r => r.name === 'Shield');
       let guildMember = message.mentions.members.first();
@@ -56,7 +56,7 @@ const setClass = (cmd, argTokens, message) => {
   const cmdToken = cmd.toLowerCase();
   const classCommand = argTokens.length >= 3 ? argTokens[1].toLowerCase() : '';
   if (cmdToken === 'set' && argTokens.length >= 3 && classCommand === 'class') {
-    const classCommandArgs = argTokens[2];
+    const classCommandArgs = argTokens[2].toLowerCase();
     if (classCommandArgs === 'acolyte') {
       let acolyteClass = message.guild.roles.find(r => r.name === 'Acolyte');
       let guildMember = message.mentions.members.first();
@@ -100,7 +100,7 @@ const unsetClass = (cmd, argTokens, message) => {
   const cmdToken = cmd.toLowerCase();
   const classCommand = argTokens.length >= 3 ? argTokens[1].toLowerCase() : '';
   if (cmdToken === 'unset' && argTokens.length >= 3 && classCommand === 'class') {
-    const classCommandArgs = argTokens[2];
+    const classCommandArgs = argTokens[2].toLowerCase();
     if (classCommandArgs === 'acolyte') {
       let acolyteClass = message.guild.roles.find(r => r.name === 'Acolyte');
       let guildMember = message.mentions.members.first();
@@ -141,7 +141,7 @@ const setTimezone = (cmd, argTokens, message) => {
   const cmdToken = cmd.toLowerCase();
   const timezoneCommand = argTokens.length >= 3 ? argTokens[1].toLowerCase() : '';
   if (cmdToken === 'set' && argTokens.length >= 3 && timezoneCommand === 'thyme') {
-    const timezoneCommandArgs = argTokens[2];
+    const timezoneCommandArgs = argTokens[2].toLowerCase();
     if (timezoneCommandArgs === 'pst') {
       let pstRole = message.guild.roles.find(r => r.name === 'PST');
       let guildMember = message.mentions.members.first();
@@ -173,7 +173,7 @@ const unsetTimezone = (cmd, argTokens, message) => {
   const cmdToken = cmd.toLowerCase();
   const timezoneCommand = argTokens.length >= 3 ? argTokens[1].toLowerCase() : '';
   if (cmdToken === 'unset' && argTokens.length >= 3 && timezoneCommand === 'thyme') {
-    const timezoneCommandArgs = argTokens[2];
+    const timezoneCommandArgs = argTokens[2].toLowerCase();
     if (timezoneCommandArgs === 'pst') {
       let pstRole = message.guild.roles.find(r => r.name === 'PST');
       let guildMember = message.mentions.members.first();
@@ -211,17 +211,3 @@ module.exports = {
   setTimezone: setTimezone,
   unsetTimezone: unsetTimezone
 };
-
-// $set @username color shield
-// $set @username class Swordsman
-// $set @username job Lord Knight
-// $set @username pronouns He/Him
-
-// $edit @username color shield
-// $edit @username class Swordsman
-// $edit @username job Hunter
-
-// $unset @username color shield
-// $unset @username class Swordsman
-// $unset @username job Lord Knight
-// $unset @username pronouns he/him
