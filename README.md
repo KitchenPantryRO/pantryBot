@@ -22,7 +22,7 @@ index.js
 * Objtain the BOT_TOKEN from a fellow KitchenPantry member
 * Rename the env file in the root directory to .env
 * Put the correct value to the associated "BOT_TOKEN" key in the .env file
-* run the following command to start the bot node index.js
+* run the following command to start the bot `npm run local`
 * Invite PantryBot to your test server
 * You will be able to see the commands live from your terminal
 

@@ -7,6 +7,11 @@ const pantryBot = new Discord.Client();
 
 pantryBot.on('ready', () => {
   console.log('Anyone down for ET?');
+  console.log(
+    `${pantryBot.user.username} currently cooking on ${
+      pantryBot.guilds.size
+    } servers`
+  );
 });
 
 pantryBot.on('message', message => {
@@ -20,6 +25,7 @@ pantryBot.on('message', message => {
       const argTokens = numTokens >= 2 ? tokenizer.getArgTokens(tokens) : [];
       commands.eggs.cellar(cmdToken, argTokens, message);
       commands.help.help(cmdToken, argTokens, message);
+      commands.et.getET(cmdToken, argTokens, message, pantryBot);
       commands.events.whenIs(cmdToken, argTokens, message);
       commands.roles.setRole(cmdToken, argTokens, message);
       commands.roles.unsetRole(cmdToken, argTokens, message);
