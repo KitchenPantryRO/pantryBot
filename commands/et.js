@@ -58,7 +58,7 @@ const getETemoji = boss => {
 
 const getET = async (cmd, argTokens, message) => {
   const cmdToken = cmd.toLowerCase();
-  if (cmdToken === 'test' && argTokens.length == 0) {
+  if (cmdToken === 'et' && argTokens.length == 0) {
     const response = await axios.get(`${process.env.ET_SRC}`);
     const html = response.data;
     const $ = cheerio.load(html);
@@ -193,7 +193,7 @@ const getET = async (cmd, argTokens, message) => {
         console.log(e);
       }
     });
-  } else if (cmdToken === 'etm' && argTokens.length > 0) {
+  } else if (cmdToken === 'et' && argTokens.length > 0) {
     message.reply(
       `Butterfly technology currently does not support that feature`
     );
