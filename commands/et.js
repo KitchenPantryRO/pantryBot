@@ -58,7 +58,7 @@ const getETemoji = boss => {
 
 const getET = async (cmd, argTokens, message) => {
   const cmdToken = cmd.toLowerCase();
-  if (cmdToken === 'et' && argTokens.length == 0) {
+  if (cmdToken === 'test' && argTokens.length == 0) {
     const response = await axios.get(`${process.env.ET_SRC}`);
     const html = response.data;
     const $ = cheerio.load(html);
@@ -146,21 +146,20 @@ const getET = async (cmd, argTokens, message) => {
     }
     let page = 1;
     const mobileEmbed = `**${pages[page - 1][0]}**\n\n${pages[page - 1][1]}`;
-    message.channel.send(mobileEmbed).then(msg => {
-      msg.react('⏪').then(r => {
-        msg.react('⏩');
-        msg.react('🗑');
+    message.channel.send(mobileEmbed).then(async msg => {
+      try {
+        await msg.react('⏪');
+        await msg.react('⏩');
+        await msg.react('🗑');
         const prevFilter = (reaction, user) => {
           return reaction.emoji.name === '⏪' && user.id === message.author.id;
         };
         const nextFilter = (reaction, user) => {
           return reaction.emoji.name === '⏩' && user.id === message.author.id;
         };
-
         const deleteFilter = (reaction, user) => {
           return reaction.emoji.name === '🗑' && user.id === message.author.id;
         };
-
         const prev = msg.createReactionCollector(prevFilter, {
           time: 60000
         });
@@ -190,7 +189,9 @@ const getET = async (cmd, argTokens, message) => {
           }`;
           msg.edit(mobileEmbed);
         });
-      });
+      } catch (e) {
+        console.log(e);
+      }
     });
   } else if (cmdToken === 'etm' && argTokens.length > 0) {
     message.reply(
