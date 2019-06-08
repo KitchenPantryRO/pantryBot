@@ -55,6 +55,7 @@ const getETemoji = boss => {
       return '<:noicon:586532889487867915>';
   }
 };
+
 const getET = async (cmd, argTokens, message) => {
   const cmdToken = cmd.toLowerCase();
   if (cmdToken === 'et' && argTokens.length == 0) {
@@ -133,7 +134,7 @@ const getET = async (cmd, argTokens, message) => {
       }${UPDATE_DATE[6]}`;
 
       pages.push([
-        [`Channel ${CH_CH}`],
+        [`\nChannel ${CH_CH}`],
         [
           `**FL10**: ${FL_10_ONE_EMOJI}\n\n**FL20**: ${FL_20_ONE_EMOJI}\n\n**FL30**: ${FL_30_ONE_EMOJI}\n\n**FL40**: ${FL_40_ONE_EMOJI}\n\n**FL50**: ${FL_50_ONE_EMOJI} ${FL_50_TWO_EMOJI}\n\n**FL60**: ${FL_60_ONE_EMOJI} ${FL_60_TWO_EMOJI}\n\n**FL70**: ${FL_70_ONE_EMOJI} ${FL_70_TWO_EMOJI}\n\n**FL80**: ${FL_80_ONE_EMOJI} ${FL_80_TWO_EMOJI}\n\n**FL90**: ${FL_90_ONE_EMOJI} ${FL_90_TWO_EMOJI}\n\n**FL100**: ${FL_100_ONE_EMOJI} ${FL_100_TWO_EMOJI} ${FL_100_THREE_EMOJI}\n\n${
             UPDATE_DATE[0]
@@ -144,11 +145,8 @@ const getET = async (cmd, argTokens, message) => {
       ]);
     }
     let page = 1;
-    const embed = new Discord.RichEmbed()
-      .setColor(0xffffff)
-      .setFooter(`Page ${page} of ${pages.length}`)
-      .setDescription(`**${pages[page - 1][0]}**\n\n${pages[page - 1][1]}`);
-    message.channel.send(embed).then(msg => {
+    const mobileEmbed = `**${pages[page - 1][0]}**\n\n${pages[page - 1][1]}`;
+    message.channel.send(mobileEmbed).then(msg => {
       msg.react('⏪').then(r => {
         msg.react('⏩');
         msg.react('🗑');
@@ -179,24 +177,22 @@ const getET = async (cmd, argTokens, message) => {
         prev.on('collect', r => {
           if (page === 1) return;
           page--;
-          embed.setDescription(
-            `**${pages[page - 1][0]}**\n\n${pages[page - 1][1]}`
-          );
-          embed.setFooter(`Page ${page} of ${pages.length}`);
-          msg.edit(embed);
+          let mobileEmbed = `**${pages[page - 1][0]}**\n\n${
+            pages[page - 1][1]
+          }`;
+          msg.edit(mobileEmbed);
         });
         next.on('collect', r => {
           if (page === pages.length) return;
           page++;
-          embed.setDescription(
-            `**${pages[page - 1][0]}**\n\n${pages[page - 1][1]}`
-          );
-          embed.setFooter(`Page ${page} of ${pages.length}`);
-          msg.edit(embed);
+          let mobileEmbed = `**${pages[page - 1][0]}**\n\n${
+            pages[page - 1][1]
+          }`;
+          msg.edit(mobileEmbed);
         });
       });
     });
-  } else if (cmdToken === 'et' && argTokens.length > 0) {
+  } else if (cmdToken === 'etm' && argTokens.length > 0) {
     message.reply(
       `Butterfly technology currently does not support that feature`
     );
