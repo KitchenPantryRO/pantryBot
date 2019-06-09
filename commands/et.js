@@ -1,6 +1,5 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const Discord = require('discord.js');
 const getETemoji = boss => {
   switch (boss) {
     case 'angeling':
@@ -195,7 +194,7 @@ const getET = async (cmd, argTokens, message) => {
     });
   } else if (cmdToken === 'et' && argTokens.length > 0) {
     message.reply(
-      `Butterfly technology currently does not support that feature`
+      'Hello~ I can only provide ET information between floors 1-100 on the GLOBAL servers. Try typing the following command instead ```$et```'
     );
   }
 };

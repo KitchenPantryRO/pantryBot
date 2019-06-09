@@ -9,8 +9,34 @@ exports.getToken = (position, tokens) => {
   return tokens[position];
 };
 
+// Returns String Command $help -> help
+exports.getCmd = tokens => {
+  return tokens.splice(1);
+};
+
 // Determines of the incoming message is a command
 exports.isCmd = tokens => {
+  const command = this.getCmd(tokens);
+  switch (command) {
+    case 'help':
+      return true;
+    case 'et':
+      return true;
+    case 'whenis':
+      return true;
+    case 'set':
+      return true;
+    case 'unset':
+      return true;
+    case 'suz':
+      return true;
+    default:
+      return false;
+  }
+};
+
+// Determines of the incoming message contains the $ delimiter
+exports.isDelimiter = tokens => {
   const cmdToken = this.getToken(0, tokens);
   return cmdToken.startsWith('$');
 };

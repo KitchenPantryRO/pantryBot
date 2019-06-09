@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const help = (cmd, argTokens, message) => {
   const cmdToken = cmd.toLowerCase();
-  if (cmdToken === 'help') {
+  if (cmdToken === 'help' && argTokens.length === 0) {
     const embed = new Discord.RichEmbed()
       .setTitle('🌿PantryBot Menu')
       .setDescription(
@@ -17,20 +17,32 @@ const help = (cmd, argTokens, message) => {
       )
       .addField(
         'COMMAND: ```$whenis [EVENT]```',
-        '👀 Description: Provides time of [EVENT]\n🐱 Supported [EVENTS]: woe\n🐚 Example:\n```$whenis woe```'
+        '👀 Description: Provides time of [EVENT]\n🐱 Supported [EVENTS]: woe, ufo, mvp\n🐚 Example:\n```$whenis woe```'
       )
       .addField(
         'COMMAND: ```$set @username#0123 role [ROLE]```',
         '👀 Description: This command sets your role on discord\n🐱 Supported [ROLE]: shield,sword,heals\n🐚 Example:\n```$set @username#0123 role sword```'
       )
       .addField(
+        'COMMAND: ```$unset @username#0123 role [ROLE]```',
+        '👀 Description: This command unsets your role on discord\n🐱 Supported [ROLE]: shield,sword,heals\n🐚 Example:\n```$unset @username#0123 role sword```'
+      )
+      .addField(
         'COMMAND: ```$set @username#0123 class [CLASS]```',
         '👀 Description:This command sets your class on discord\n🐱 Supported [CLASS]:\nAcolyte,Archer,Mage,Swordsman,Thief or Merchant\n🐚 Example:\n```$set @username#0123 class swordsman```'
+      )
+      .addField(
+        'COMMAND: ```$unset @username#0123 class [CLASS]```',
+        '👀 Description:This command unsets your class on discord\n🐱 Supported [CLASS]:\nAcolyte,Archer,Mage,Swordsman,Thief or Merchant\n🐚 Example:\n```$unset @username#0123 class swordsman```'
       )
       .setColor(0x00ae86)
       .setFooter('Powered by 🦋Technology')
       .setTimestamp();
     message.channel.send({ embed });
+  } else if (cmdToken === 'help' && argTokens.length > 0) {
+    message.reply(
+      "I'm sorry, I can't help you with that try typing the command ```$help```"
+    );
   }
 };
 
