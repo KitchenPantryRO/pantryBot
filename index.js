@@ -11,7 +11,6 @@ pantryBot.on('ready', () => {
     `${pantryBot.user.username} currently cooking on ${pantryBot.guilds.size} servers`
   );
   console.log(new Date());
-  console.log(process.env.PRIVATE_KEY);
 });
 
 pantryBot.on('message', message => {
