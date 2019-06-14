@@ -10,6 +10,7 @@ pantryBot.on('ready', () => {
   console.log(
     `${pantryBot.user.username} currently cooking on ${pantryBot.guilds.size} servers`
   );
+  console.log(new Date());
 });
 
 pantryBot.on('message', message => {
