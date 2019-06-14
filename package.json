@@ -26,7 +26,8 @@
     "cheerio": "^1.0.0-rc.3",
     "discord.js": "^11.5.0",
     "dotenv": "^8.0.0",
-    "google-spreadsheet": "^2.0.7"
+    "google-spreadsheet": "^2.0.7",
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
