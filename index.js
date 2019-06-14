@@ -8,13 +8,19 @@ const pantryBot = new Discord.Client();
 pantryBot.on('ready', () => {
   console.log('Anyone down for ET?');
   console.log(
-    `${pantryBot.user.username} currently cooking on ${
-      pantryBot.guilds.size
-    } servers`
+    `${pantryBot.user.username} currently cooking on ${pantryBot.guilds.size} servers`
   );
 });
 
 pantryBot.on('message', message => {
+  //message.author.username
+  message.author.bot;
+  message.author.bot.valueOf();
+  message.author.discriminator;
+  message.author.presence;
+  message.author.tag;
+  message.author.createdAt;
+  message.author.displayAvatarURL;
   const tokens = tokenizer.tokens(message.content);
   const numTokens = tokenizer.getTokensLen(tokens);
   if (numTokens > 0) {
@@ -25,8 +31,7 @@ pantryBot.on('message', message => {
       if (isCmd) {
         const cmdToken = tokenizer.getCmd(firstToken);
         const argTokens = numTokens >= 2 ? tokenizer.getArgTokens(tokens) : [];
-        commands.eggs.cellar(cmdToken, argTokens, message);
-        commands.help.help(cmdToken, argTokens, message);
+        commands.woe.getMyTeam(cmdToken, argTokens, message);
         commands.et.getET(cmdToken, argTokens, message);
         commands.events.whenIs(cmdToken, argTokens, message);
         commands.roles.setRole(cmdToken, argTokens, message);
@@ -35,6 +40,8 @@ pantryBot.on('message', message => {
         commands.roles.unsetClass(cmdToken, argTokens, message);
         commands.roles.setTimezone(cmdToken, argTokens, message);
         commands.roles.unsetTimezone(cmdToken, argTokens, message);
+        commands.eggs.cellar(cmdToken, argTokens, message);
+        commands.help.help(cmdToken, argTokens, message);
       } else {
         message.reply(
           "I'm not sure I know that command, ask me for a list of commands by typing ```$help```"

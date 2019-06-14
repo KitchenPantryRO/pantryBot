@@ -18,6 +18,10 @@ exports.getCmd = tokens => {
 exports.isCmd = tokens => {
   const command = this.getCmd(tokens);
   switch (command) {
+    case 'test':
+      return true;
+    case 'woe':
+      return true;
     case 'help':
       return true;
     case 'et':

@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const help = (cmd, argTokens, message) => {
   const cmdToken = cmd.toLowerCase();
-  if (cmdToken === 'help' && argTokens.length === 0) {
+  if (cmdToken === 'test' && argTokens.length === 0) {
     const embed = new Discord.RichEmbed()
       .setTitle('🌿PantryBot Menu')
       .setDescription(
@@ -39,7 +39,7 @@ const help = (cmd, argTokens, message) => {
       .setFooter('Powered by 🦋Technology')
       .setTimestamp();
     message.channel.send({ embed });
-  } else if (cmdToken === 'help' && argTokens.length > 0) {
+  } else if (cmdToken === 'test' && argTokens.length > 0) {
     message.reply(
       "I'm sorry, I can't help you with that try typing the command ```$help```"
     );
