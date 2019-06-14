@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const help = (cmd, argTokens, message) => {
   const cmdToken = cmd.toLowerCase();
-  if (cmdToken === 'test' && argTokens.length === 0) {
+  if (cmdToken === 'help' && argTokens.length === 0) {
     const embed = new Discord.RichEmbed()
       .setTitle('🌿PantryBot Menu')
       .setDescription(
