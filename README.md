@@ -1,11 +1,9 @@
-#PantryBot
+# 🌿 PantryBot
 
-###Discord Bot for the KitchenPantry Guild
-
-The purpose of this bot is to help with running the guild from WoE to event management
+| PantryBot helps a guild run WoE and its events.
 
 
-###The repository has the following sturcture
+### The repository has the following sturcture
 
 /commands
 - where we put commands for the bot and export them through the index file
@@ -16,61 +14,84 @@ The purpose of this bot is to help with running the guild from WoE to event mana
 index.js
 - where we process commands from Discord and put
 
-##How to Run Locally
-* clone this repository
-* npm i
-* Objtain the BOT_TOKEN from a fellow KitchenPantry member
-* Rename the env file in the root directory to .env
-* Put the correct value to the associated "BOT_TOKEN" key in the .env file
-* run the following command to start the bot `npm run local`
-* Invite PantryBot to your test server
-* You will be able to see the commands live from your terminal
+## Commands Supported
 
-##How to Contribute
 
-Welcome to the PantryBot repository!
+Below you'll find a list of commands, their descriptions and examples.
 
-If you would like to add an entirely new category of commands -- feel free to create a new file in the
-commands folder to reflect that, otherwise feel free to add commands to existing categories.
 
-So far we have
-* help
-  * This is the help command to provide users a list of commands of PantryBot
-* events
-  * These commands currently deal with what time an event is
-* eggs
-  * These are commands just for fun :)
+|
+COMMAND: ```$help```
 
-##Creating Your First Command
+👀 Description: This is the ```$help command🐱 Supported options: none🐚
 
-Creating your first command should be fun -- index.js currently does all the heavy lifting with
-tokenizing the incoming messages from discord.
+Example:```$help```
 
-The tokenizer will always provide you with three
-arguments -- but it will be up to you to check their correctness.
 
-* cmd
-* argTokens
-* message
 
-* cmd
-  * this is the command that is passed to you as a string, i.e "$whenis woe", the cmd parameter would be"whenis"
-* argTokens
-  * this is an object that contains an ordered set of arguments, i.e "$whenis woe", the argTokens paramater would just be ['woe']
-* message
-  * message is the discord message object, you will be able to reply, see below for an example
 
-```
-const whenIs = (cmd, argTokens, message) => {
-  const cmdToken = cmd.toLowerCase();
-  if (cmdToken === 'whenis') {
-    const event = argTokens[0].toLowerCase();
-    if (event === 'woe') {
-      message.reply(
-        '```WoE happens every Thursday and Sunday at the following times\n\n8PM Pacific Time\n8PM Arizona Time\n9PM Mountain Time\n10PM Central Time\n11PM Eastern Time```'
-      );
-    }
-  }
-};
-```
-Happy devo-ing <3
+|
+COMMAND: ```$et```
+
+👀 Description: Shows MVP bosses for all ET floors.Use the arrow reacts to toggle between channels and the trashbin react to delete the message as soon as you're done🐱
+
+Supported options: none🐚
+
+Example:```$et```
+
+
+
+
+
+| COMMAND: ```$whenis [EVENT]```
+
+👀 Description: Provides time of [EVENT]🐱
+
+Supported [EVENTS]: woe, ufo, mvp
+
+🐚 Example:```$whenis woe```
+
+
+
+
+| COMMAND: ```$set @username#0123 role [ROLE]```
+
+👀 Description: This command sets your role on discord🐱
+
+Supported [ROLE]: shield,sword,heals
+
+🐚 Example:```$set @username#0123 role sword```
+
+
+
+
+
+COMMAND: ```$unset @username#0123 role [ROLE]```
+
+👀 Description: This command unsets your role on discord
+
+🐱 Supported [ROLE]: shield,sword,heals
+
+🐚 Example:```$unset @username#0123 role sword```
+
+
+
+
+COMMAND: ```$set @username#0123 class [CLASS]```
+
+👀 Description:This command sets your class on discord
+
+🐱 Supported [CLASS]:Acolyte,Archer,Mage,Swordsman,Thief or Merchant
+
+🐚 Example:```$set @username#0123 class swordsman```
+
+
+
+COMMAND: ```$unset @username#0123 class [CLASS]```
+
+👀 Description:This command unsets your class on discord
+
+🐱 Supported [CLASS]:Acolyte,Archer,Mage,Swordsman,Thief or Merchant
+
+🐚 Example:```$unset @username#0123 class swordsman```
+

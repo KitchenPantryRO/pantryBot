@@ -170,13 +170,13 @@ const getET = async (cmd, argTokens, message) => {
           return reaction.emoji.name === '🗑' && user.id === message.author.id;
         };
         const prev = msg.createReactionCollector(prevFilter, {
-          time: 60000
+          time: 21600000
         });
         const next = msg.createReactionCollector(nextFilter, {
-          time: 60000
+          time: 21600000
         });
         const del = msg.createReactionCollector(deleteFilter, {
-          time: 60000
+          time: 21600000
         });
         del.on('collect', r => {
           msg.delete();
