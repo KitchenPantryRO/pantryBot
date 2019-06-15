@@ -4,6 +4,16 @@ const getETemoji = boss => {
   switch (boss) {
     case 'angeling':
       return '<:angeling:586531884738281472>';
+    case 'arcangeling':
+      return '<:arcangeling:589358833789435904>';
+    case 'bloodyknight':
+      return '<:bloodyknight:589368508261859328>';
+    case 'stormyknight':
+      return '<:stormyknight:589369068776063006>';
+    case 'firelord':
+      return '<:kaho:589366737133109248>';
+    case 'hatii':
+      return '<:garm:589367184527196191>';
     case 'atroce':
       return '<:atroce:586532100065460224>';
     case 'baphomet':
@@ -137,9 +147,9 @@ const getET = async (cmd, argTokens, message) => {
         [
           `**FL10**: ${FL_10_ONE_EMOJI}\n\n**FL20**: ${FL_20_ONE_EMOJI}\n\n**FL30**: ${FL_30_ONE_EMOJI}\n\n**FL40**: ${FL_40_ONE_EMOJI}\n\n**FL50**: ${FL_50_ONE_EMOJI} ${FL_50_TWO_EMOJI}\n\n**FL60**: ${FL_60_ONE_EMOJI} ${FL_60_TWO_EMOJI}\n\n**FL70**: ${FL_70_ONE_EMOJI} ${FL_70_TWO_EMOJI}\n\n**FL80**: ${FL_80_ONE_EMOJI} ${FL_80_TWO_EMOJI}\n\n**FL90**: ${FL_90_ONE_EMOJI} ${FL_90_TWO_EMOJI}\n\n**FL100**: ${FL_100_ONE_EMOJI} ${FL_100_TWO_EMOJI} ${FL_100_THREE_EMOJI}\n\n${
             UPDATE_DATE[0]
-          } ${UPDATE_DATE[1]} ${UPDATE_DATE[2]} ${UPDATE_DATE[3]} - ${
-            UPDATE_DATE[5]
-          } ${UPDATE_DATE[6]}\n\n*powered by:🦋${process.env.SRC}*`
+          } ${UPDATE_DATE[1]} ${UPDATE_DATE[2]} ${UPDATE_DATE[3]} - ${UPDATE_DATE[5]} ${
+            UPDATE_DATE[6]
+          }\n\n*powered by:🦋${process.env.SRC}*`
         ]
       ]);
     }
@@ -175,17 +185,13 @@ const getET = async (cmd, argTokens, message) => {
         prev.on('collect', r => {
           if (page === 1) return;
           page--;
-          let mobileEmbed = `**${pages[page - 1][0]}**\n\n${
-            pages[page - 1][1]
-          }`;
+          let mobileEmbed = `**${pages[page - 1][0]}**\n\n${pages[page - 1][1]}`;
           msg.edit(mobileEmbed);
         });
         next.on('collect', r => {
           if (page === pages.length) return;
           page++;
-          let mobileEmbed = `**${pages[page - 1][0]}**\n\n${
-            pages[page - 1][1]
-          }`;
+          let mobileEmbed = `**${pages[page - 1][0]}**\n\n${pages[page - 1][1]}`;
           msg.edit(mobileEmbed);
         });
       } catch (e) {

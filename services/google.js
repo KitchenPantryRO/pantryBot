@@ -42,7 +42,6 @@ const getTeams = async () => {
   await promisify(doc.useServiceAccountAuth)(creds);
   const info = await promisify(doc.getInfo)();
   const worksheets = info.worksheets;
-  console.log(worksheets);
   var sheetTeams = null;
   for (let index = 0; index < worksheets.length; index++) {
     let tempSheet = info.worksheets[index];

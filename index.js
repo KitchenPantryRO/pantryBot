@@ -14,14 +14,6 @@ pantryBot.on('ready', () => {
 });
 
 pantryBot.on('message', message => {
-  //message.author.username
-  message.author.bot;
-  message.author.bot.valueOf();
-  message.author.discriminator;
-  message.author.presence;
-  message.author.tag;
-  message.author.createdAt;
-  message.author.displayAvatarURL;
   const tokens = tokenizer.tokens(message.content);
   const numTokens = tokenizer.getTokensLen(tokens);
   if (numTokens > 0) {

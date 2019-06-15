@@ -2,8 +2,11 @@ const Discord = require('discord.js');
 const GOOGLE = require('../services/google');
 
 const getMyTeam = async (cmd, argTokens, message) => {
+  console.log('start of inside of getMyTeam');
+  console.log(cmd);
+  console.log('inside of getMyTeam');
   const cmdToken = cmd.toLowerCase();
-  const roleCommand = argTokens.length >= 0 ? argTokens[0].toLowerCase() : '';
+  const roleCommand = argTokens.length > 0 ? argTokens[0].toLowerCase() : '';
   if (cmdToken === 'woe' && argTokens.length >= 1 && roleCommand === 'myteam') {
     const { tag } = message.author;
     const IN_GAME_NAME = await GOOGLE.getUsername(tag);
@@ -28,7 +31,7 @@ const getMyTeam = async (cmd, argTokens, message) => {
         "Hello! Either you're not on a team for WoE or your @username for discord is not on the list"
       );
     }
-  } else {
+  } else if (cmdToken === 'woe' && argTokens.length >= 1 && roleCommand !== '') {
     message.reply('The only commands I suppoort for WoE right now are $woe myteam');
   }
 };
