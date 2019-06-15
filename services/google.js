@@ -5,12 +5,19 @@ const creds = require('./client_secret');
 
 //@type: string, NAME: discordName
 const getUsername = async discordName => {
+  const DISCORD_SHEET_ID = process.env.DISCORD_SHEET_ID;
   const DISCORD_NAME = discordName.trim().toLowerCase();
   const doc = new GoogleSpreadsheet(`${process.env.KP_SHEET_ID}`);
   await promisify(doc.useServiceAccountAuth)(creds);
   const info = await promisify(doc.getInfo)();
-  const SHEET_INDEX_DISCORD = 3;
-  const sheetDiscord = info.worksheets[SHEET_INDEX_DISCORD];
+  const worksheets = info.worksheets;
+  var sheetDiscord = null;
+  for (let index = 0; index < worksheets.length; index++) {
+    let tempSheet = info.worksheets[index];
+    if (tempSheet['id'] === DISCORD_SHEET_ID) {
+      sheetDiscord = tempSheet;
+    }
+  }
   var IN_GAME_NAME = '';
   const rowsUsers = await promisify(sheetDiscord.getRows)({
     offset: 1
@@ -29,12 +36,21 @@ const getUsername = async discordName => {
 const getTeams = async () => {
   //sanitize input
   var TEAMS = {};
+  const TEAMS_SHEET_ID = process.env.TEAMS_SHEET_ID;
   const WHITE_LST = ['_xml', 'id', 'app:edited', '_links', 'save', 'del'];
   const doc = new GoogleSpreadsheet(`${process.env.KP_SHEET_ID}`);
   await promisify(doc.useServiceAccountAuth)(creds);
   const info = await promisify(doc.getInfo)();
-  const SHEET_INDEX_TEAMS = 2;
-  const sheetTeams = info.worksheets[SHEET_INDEX_TEAMS];
+  const worksheets = info.worksheets;
+  console.log(worksheets);
+  var sheetTeams = null;
+  for (let index = 0; index < worksheets.length; index++) {
+    let tempSheet = info.worksheets[index];
+    if (tempSheet['id'] === TEAMS_SHEET_ID) {
+      sheetTeams = tempSheet;
+    }
+  }
+
   const rowsTeams = await promisify(sheetTeams.getRows)({
     offset: 1
   });
