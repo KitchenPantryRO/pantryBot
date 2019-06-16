@@ -4,6 +4,11 @@ Welcome to the PantryBot repository!
 
 To contribute -- please make a branch and make a PR
 
+## Minimum System Requirements
+* node 8.12.0
+* npm 6.9.0
+* Heroku CLI
+
 ## How to Run Locally
 * clone this repository
 * npm i
