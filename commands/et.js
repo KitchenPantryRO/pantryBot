@@ -1,5 +1,9 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+/**
+ *
+ * @param {string} boss
+ */
 const getETemoji = boss => {
   switch (boss) {
     case 'angeling':
@@ -65,6 +69,12 @@ const getETemoji = boss => {
   }
 };
 
+/**
+ *
+ * @param {string} cmd
+ * @param {string []} argTokens
+ * @param {Discord message obj} message
+ */
 const getET = async (cmd, argTokens, message) => {
   const cmdToken = cmd.toLowerCase();
   if (cmdToken === 'et' && argTokens.length == 0) {

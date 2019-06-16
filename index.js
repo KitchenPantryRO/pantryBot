@@ -35,6 +35,10 @@ pantryBot.on('message', message => {
         commands.roles.unsetTimezone(cmdToken, argTokens, message);
         commands.eggs.cellar(cmdToken, argTokens, message);
         commands.help.help(cmdToken, argTokens, message);
+        commands.example.test1(cmdToken, argTokens, message);
+        commands.example.test2(cmdToken, argTokens, message);
+        commands.example.test3(cmdToken, argTokens, message);
+        commands.example.test4(cmdToken, argTokens, message);
       } else {
         message.reply(
           "I'm not sure I know that command, ask me for a list of commands by typing ```$help```"

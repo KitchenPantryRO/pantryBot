@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {string} cmd
+ * @param {array of strings} argTokens
+ * @param {Discord Message} message
+ */
 const whenIs = (cmd, argTokens, message) => {
   const cmdToken = cmd.toLowerCase();
   if (cmdToken === 'whenis' && argTokens.length === 1) {

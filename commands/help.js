@@ -1,4 +1,10 @@
 const Discord = require('discord.js');
+/**
+ *
+ * @param {string} cmd
+ * @param {string []} argTokens
+ * @param {Discord} message
+ */
 const help = (cmd, argTokens, message) => {
   const cmdToken = cmd.toLowerCase();
   if (cmdToken === 'help' && argTokens.length === 0) {
@@ -34,6 +40,10 @@ const help = (cmd, argTokens, message) => {
       .addField(
         'COMMAND: ```$unset @username#0123 class [CLASS]```',
         '👀 Description:This command unsets your class on discord\n🐱 Supported [CLASS]:\nAcolyte,Archer,Mage,Swordsman,Thief or Merchant\n🐚 Example:\n```$unset @username#0123 class swordsman```'
+      )
+      .addField(
+        'COMMAND: ```$woe myteam```',
+        '👀 Description:This shows your your assigned WoE team\n🐚 Example:\n```$woe myteam```'
       )
       .setColor(0x00ae86)
       .setFooter('Powered by 🦋Technology')

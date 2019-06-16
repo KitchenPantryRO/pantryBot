@@ -1,10 +1,13 @@
 const Discord = require('discord.js');
 const GOOGLE = require('../services/google');
 
+/**
+ *
+ * @param {string} cmd
+ * @param {array of strings} argTokens
+ * @param {Discord Message Obj} message
+ */
 const getMyTeam = async (cmd, argTokens, message) => {
-  console.log('start of inside of getMyTeam');
-  console.log(cmd);
-  console.log('inside of getMyTeam');
   const cmdToken = cmd.toLowerCase();
   const roleCommand = argTokens.length > 0 ? argTokens[0].toLowerCase() : '';
   if (cmdToken === 'woe' && argTokens.length >= 1 && roleCommand === 'myteam') {

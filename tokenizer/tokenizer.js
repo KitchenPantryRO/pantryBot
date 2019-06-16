@@ -20,6 +20,14 @@ exports.isCmd = tokens => {
   switch (command) {
     case 'test':
       return true;
+    case 'test1':
+      return true;
+    case 'test2':
+      return true;
+    case 'test3':
+      return true;
+    case 'test4':
+      return true;
     case 'woe':
       return true;
     case 'help':
@@ -33,6 +41,8 @@ exports.isCmd = tokens => {
     case 'unset':
       return true;
     case 'suz':
+      return true;
+    case 'marmalade':
       return true;
     default:
       return false;

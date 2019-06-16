@@ -3,7 +3,10 @@ const GoogleSpreadsheet = require('google-spreadsheet');
 const { promisify } = require('util');
 const creds = require('./client_secret');
 
-//@type: string, NAME: discordName
+/**
+ *
+ * @param {string} discordName
+ */
 const getUsername = async discordName => {
   const DISCORD_SHEET_ID = process.env.DISCORD_SHEET_ID;
   const DISCORD_NAME = discordName.trim().toLowerCase();
@@ -32,7 +35,9 @@ const getUsername = async discordName => {
   return IN_GAME_NAME;
 };
 
-//@type: None, name: none
+/**
+ *  No params
+ */
 const getTeams = async () => {
   //sanitize input
   var TEAMS = {};
@@ -83,6 +88,12 @@ const getTeams = async () => {
 //@type: string, name:IN_GAME_NAME
 //@type: string, name: NAME:TEAM_NAMES
 //@type: string list, name: DESC_MEMBERS
+/**
+ *
+ * @param {string} inGameName
+ * @param {string} teamNames
+ * @param {string []} desMembers
+ */
 const getTeam = (inGameName, teamNames, desMembers) => {
   const IN_GAME_NAME = inGameName.trim().toLowerCase();
   for (let index = 0; index < teamNames.length; index++) {
