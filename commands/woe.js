@@ -66,7 +66,7 @@ const getAttendance = async (cmd, argTokens, message) => {
       }
     } else {
       message.reply(
-        "Hello! I currently can't provide you information for your attendance, please contact someone who is in charge of WoE attendance"
+        "Hello! I currently can't provide you information for your attendance, please make sure to fill out the attendance before using this command"
       );
     }
   }
