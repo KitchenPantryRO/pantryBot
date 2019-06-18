@@ -25,6 +25,8 @@ pantryBot.on('message', message => {
         const cmdToken = tokenizer.getCmd(firstToken);
         const argTokens = numTokens >= 2 ? tokenizer.getArgTokens(tokens) : [];
         commands.woe.getMyTeam(cmdToken, argTokens, message);
+        commands.woe.setAttendance(cmdToken, argTokens, message);
+        commands.woe.getAttendance(cmdToken, argTokens, message);
         commands.et.getET(cmdToken, argTokens, message);
         commands.events.whenIs(cmdToken, argTokens, message);
         commands.roles.setRole(cmdToken, argTokens, message);

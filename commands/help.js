@@ -43,7 +43,23 @@ const help = (cmd, argTokens, message) => {
       )
       .addField(
         'COMMAND: ```$woe myteam```',
-        '👀 Description:This shows your your assigned WoE team\n🐚 Example:\n```$woe myteam```'
+        '👀 Description:This shows your  assigned WoE team\n🐚 Example:\n```$woe myteam```'
+      )
+      .addField(
+        'COMMAND: ```$woe attendance```',
+        '👀 Description:This shows your current information no the attendance sheet for WoE\n🐚 Example:\n```$woe attendance```'
+      )
+      .addField(
+        'COMMAND: ```$woe present class [CLASS NAME] build [BUILD NAME]```',
+        '👀 Description: This allows you to mark yourself present for WoE along with your class and build\n🐚 Example:\n```$woe present class Rune Knight build agi-crit```'
+      )
+      .addField(
+        'COMMAND: ```$woe standby class [CLASS NAME] build [BUILD NAME]```',
+        '👀 Description: This allows you to mark yourself as [standby] when you are not sure you will make it to WoE, along with specifying your class and build\n🐚 Example:\n```$woe standby class Rune Knight build agi-crit```'
+      )
+      .addField(
+        'COMMAND: ```$woe absent```',
+        '👀 Description: This allows you to mark yourself absent for WoE \n🐚 Example:\n```$woe absent```'
       )
       .setColor(0x00ae86)
       .setFooter('Powered by 🦋Technology')

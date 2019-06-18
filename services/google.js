@@ -85,6 +85,113 @@ const getTeams = async () => {
   return TEAMS;
 };
 
+/**
+ *
+ * @param {string} inGameName
+ * @param {string} attendanceCommand
+ * @param {string} classDescription
+ * @param {string} buildDescription
+ */
+const setAttendance = async (
+  inGameName,
+  attendanceCommand,
+  classDescription,
+  buildDescription
+) => {
+  //sanitize input
+  const IN_GAME_NAME = inGameName.trim().toLowerCase();
+  const ATTENDANCE_SHEET_ID = process.env.ATTENDANCE_SHEET_ID;
+  const doc = new GoogleSpreadsheet(`${process.env.KP_SHEET_ID}`);
+  await promisify(doc.useServiceAccountAuth)(creds);
+  const info = await promisify(doc.getInfo)();
+  const worksheets = info.worksheets;
+  var sheetAttendees = null;
+  for (let index = 0; index < worksheets.length; index++) {
+    let tempSheet = info.worksheets[index];
+    if (tempSheet['id'] === ATTENDANCE_SHEET_ID) {
+      sheetAttendees = tempSheet;
+    }
+  }
+  const rowsAttendance = await promisify(sheetAttendees.getRows)({
+    query: `name = ${IN_GAME_NAME}`
+  });
+  if (rowsAttendance.length > 0) {
+    if (attendanceCommand === 'present' || attendanceCommand === 'standby') {
+      rowsAttendance.forEach(row => {
+        row.name = IN_GAME_NAME;
+        row.class = classDescription;
+        row.build = buildDescription;
+        row.attendance = attendanceCommand;
+        row.save();
+      });
+      return true;
+    } else if (attendanceCommand === 'absent') {
+      rowsAttendance.forEach(row => {
+        row.name = IN_GAME_NAME;
+        row.class = '';
+        row.build = '';
+        row.attendance = attendanceCommand;
+        row.save();
+      });
+      return true;
+    }
+  } else {
+    if (attendanceCommand === 'present' || attendanceCommand === 'standby') {
+      const row = {
+        name: IN_GAME_NAME,
+        class: classDescription,
+        build: buildDescription,
+        attendance: attendanceCommand
+      };
+      await promisify(sheetAttendees.addRow)(row);
+      return true;
+    } else if (attendanceCommand === 'absent') {
+      const row = {
+        name: IN_GAME_NAME,
+        class: '',
+        build: '',
+        attendance: attendanceCommand
+      };
+      await promisify(sheetAttendees.addRow)(row);
+      return true;
+    }
+  }
+  return false;
+};
+
+const getAttendance = async inGameName => {
+  //sanitize input
+  const IN_GAME_NAME = inGameName.trim().toLowerCase();
+  const ATTENDANCE_SHEET_ID = process.env.ATTENDANCE_SHEET_ID;
+  const doc = new GoogleSpreadsheet(`${process.env.KP_SHEET_ID}`);
+  await promisify(doc.useServiceAccountAuth)(creds);
+  const info = await promisify(doc.getInfo)();
+  const worksheets = info.worksheets;
+  var sheetAttendees = null;
+  for (let index = 0; index < worksheets.length; index++) {
+    let tempSheet = info.worksheets[index];
+    if (tempSheet['id'] === ATTENDANCE_SHEET_ID) {
+      sheetAttendees = tempSheet;
+    }
+  }
+  const rowsAttendance = await promisify(sheetAttendees.getRows)({
+    query: `name = ${IN_GAME_NAME}`
+  });
+  var attendanceInfo = [];
+  if (rowsAttendance.length > 0) {
+    rowsAttendance.forEach(row => {
+      attendanceInfo.push(row.name);
+      attendanceInfo.push(row.attendance);
+      attendanceInfo.push(row.class);
+      attendanceInfo.push(row.build);
+    });
+    return attendanceInfo;
+  } else {
+    attendanceInfo.push('');
+    return attendanceInfo;
+  }
+};
+
 //@type: string, name:IN_GAME_NAME
 //@type: string, name: NAME:TEAM_NAMES
 //@type: string list, name: DESC_MEMBERS
@@ -111,5 +218,7 @@ const getTeam = (inGameName, teamNames, desMembers) => {
 module.exports = {
   getUsername: getUsername,
   getTeams: getTeams,
-  getTeam: getTeam
+  getTeam: getTeam,
+  setAttendance: setAttendance,
+  getAttendance: getAttendance
 };
