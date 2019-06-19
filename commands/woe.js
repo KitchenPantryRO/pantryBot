@@ -17,17 +17,22 @@ const getMyTeam = async (cmd, argTokens, message) => {
     const TEAM_NAMES = Object.keys(TEAM_ROSTER);
     const DESC_MEMBERS = Object.values(TEAM_ROSTER);
     const team = GOOGLE.getTeam(IN_GAME_NAME, TEAM_NAMES, DESC_MEMBERS);
-    if (team.length > 1) {
+    const teamSpec = await GOOGLE.getClassAndBuilds(team);
+    if (team.length > 1 && teamSpec.length > 1) {
       const embed = new Discord.RichEmbed()
         .setTitle(`Team Name: ${team[0]}`)
-        .addField('Team Objective', `${team[1]}`)
-        .addField(
-          'Team Members',
-          `${team[2]}\n${team[3]}\n${team[4]}\n${team[5]}\n${team[6]}`
-        )
         .setColor(0x00ae86)
         .setFooter('Powered by 🦋Technology')
         .setTimestamp();
+
+      for (let index = 0; index < teamSpec.length; index++) {
+        embed.addField(
+          `member ${index}`,
+          `Name: ${teamSpec[index][0]}\nClass: ${teamSpec[index][1]}\nBuild: ${
+            teamSpec[index][2]
+          }`
+        );
+      }
       message.channel.send({ embed });
     } else {
       message.reply(

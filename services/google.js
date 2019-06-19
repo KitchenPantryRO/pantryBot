@@ -36,6 +36,48 @@ const getUsername = async discordName => {
 };
 
 /**
+ *
+ * @param {string []} teamNames
+ */
+const getClassAndBuilds = async teamNames => {
+  const ATTENDANCE_SHEET_ID = process.env.ATTENDANCE_SHEET_ID;
+  const doc = new GoogleSpreadsheet(`${process.env.KP_SHEET_ID}`);
+  var TEAM_NAMES = [];
+  for (let index = 2; index < teamNames.length; index++) {
+    TEAM_NAMES.push(teamNames[index]);
+  }
+  await promisify(doc.useServiceAccountAuth)(creds);
+  const info = await promisify(doc.getInfo)();
+  const worksheets = info.worksheets;
+  var sheetAttendance = null;
+  for (let index = 0; index < worksheets.length; index++) {
+    let tempSheet = info.worksheets[index];
+    if (tempSheet['id'] === ATTENDANCE_SHEET_ID) {
+      sheetAttendance = tempSheet;
+    }
+  }
+  const rowsUsers = await promisify(sheetAttendance.getRows)({
+    offset: 1
+  });
+  var TEAM_CLASS_BUILD = [];
+  rowsUsers.forEach(row => {
+    TEAM_NAMES.forEach(teammate => {
+      if (teammate === row.name.trim().toLowerCase()) {
+        let buildClass = [];
+        let attendanceName = row.name.trim().toLowerCase();
+        let attendanceClass = row.class.trim().toLowerCase();
+        let attendanceBuild = row.build.trim().toLowerCase();
+        buildClass.push(attendanceName);
+        buildClass.push(attendanceClass);
+        buildClass.push(attendanceBuild);
+        TEAM_CLASS_BUILD.push(buildClass);
+      }
+    });
+  });
+  return TEAM_CLASS_BUILD;
+};
+
+/**
  *  No params
  */
 const getTeams = async () => {
@@ -220,5 +262,6 @@ module.exports = {
   getTeams: getTeams,
   getTeam: getTeam,
   setAttendance: setAttendance,
-  getAttendance: getAttendance
+  getAttendance: getAttendance,
+  getClassAndBuilds: getClassAndBuilds
 };
