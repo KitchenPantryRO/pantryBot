@@ -28,8 +28,10 @@ const getMyTeam = async (cmd, argTokens, message) => {
 
       for (let index = 0; index < teamSpec.length; index++) {
         embed.addField(
-          `${teamSpec[index][0]}`,
-          `Class: ${teamSpec[index][1]}\nBuild: ${teamSpec[index][2]}`
+          'Member',
+          `Name:${teamSpec[index][0]}\nClass: ${teamSpec[index][1]}\nBuild: ${
+            teamSpec[index][2]
+          }`
         );
       }
       message.channel.send({ embed });
