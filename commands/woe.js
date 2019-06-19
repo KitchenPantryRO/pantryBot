@@ -20,17 +20,16 @@ const getMyTeam = async (cmd, argTokens, message) => {
     const teamSpec = await GOOGLE.getClassAndBuilds(team);
     if (team.length > 1 && teamSpec.length > 1) {
       const embed = new Discord.RichEmbed()
-        .setTitle(`Team Name: ${team[0]}`)
+        .setTitle(`${team[0]}`)
+        .addField('Team Objective', `${team[1]}`)
         .setColor(0x00ae86)
         .setFooter('Powered by 🦋Technology')
         .setTimestamp();
 
       for (let index = 0; index < teamSpec.length; index++) {
         embed.addField(
-          `member ${index}`,
-          `Name: ${teamSpec[index][0]}\nClass: ${teamSpec[index][1]}\nBuild: ${
-            teamSpec[index][2]
-          }`
+          `${teamSpec[index][0]}`,
+          `Class: ${teamSpec[index][1]}\nBuild: ${teamSpec[index][2]}`
         );
       }
       message.channel.send({ embed });
