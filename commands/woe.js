@@ -120,7 +120,7 @@ const setAttendance = async (cmd, argTokens, message) => {
         );
         if (GUILD_ATTENDANCE) {
           message.reply(
-            `Hi ${IN_GAME_NAME}, thank you for submitting your attendance! Your attendance for WoE is set! You are currently marked as ${attendanceCommand}`
+            `Hi ${IN_GAME_NAME}, thank you for submitting your attendance! Your attendance for WoE is set! You are currently marked as ${attendanceCommand}, you can check your attendance my typing $woe attendance`
           );
         } else {
           message.reply(
