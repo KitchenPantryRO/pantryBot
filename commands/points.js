@@ -35,7 +35,7 @@ const points = async (cmd, argTokens, message) => {
             Point.findOne({ username: username }).then(point => {
               const { points } = point;
               if (points === 1) {
-                msg.reply(`${username} now has ${points} 🌿${points} PantryPoint!`);
+                msg.reply(`${username} now has 🌿${points} PantryPoint!`);
               } else {
                 msg.reply(`${username} now has 🌿${points} PantryPoints!`);
               }
