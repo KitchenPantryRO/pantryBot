@@ -28,6 +28,10 @@ exports.isCmd = tokens => {
       return true;
     case 'test4':
       return true;
+    case 'pp':
+      return true;
+    case 'mm':
+      return true;
     case 'woe':
       return true;
     case 'help':

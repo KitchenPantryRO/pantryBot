@@ -4,6 +4,7 @@ const events = require('./events');
 const et = require('./et');
 const woe = require('./woe');
 const eggs = require('./eggs');
+const points = require('./points');
 const example = require('./example');
 
 module.exports = {
@@ -13,5 +14,6 @@ module.exports = {
   events: events,
   eggs: eggs,
   et: et,
-  woe: woe
+  woe: woe,
+  points: points
 };
